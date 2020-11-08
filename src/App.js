@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import AutosInfoProvider from "./context/ContextAutosInfo";
+import Nav from "./components/Nav";
+import Clientes from "./components/Clientes";
+import FromFooter from "./components/FromFooter";
+import DetalleModelo from "./components/DetalleModelo";
+import SeccionCompletaMpdelos from "./components/SeccionCompletaModelos";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <AutosInfoProvider>
+          <Nav />
+          <Switch>
+            <Route exact path="/" component={SeccionCompletaMpdelos} />
+            <Route exact="/productosdetalles/" component={DetalleModelo} />
+          </Switch>
+          <Clientes />
+          <FromFooter />
+        </AutosInfoProvider>
+      </Router>
+    </>
   );
 }
 
